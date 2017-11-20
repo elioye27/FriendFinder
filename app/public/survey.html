@@ -148,7 +148,7 @@
 		 <!-- Materialize Modal Structure -->
         <div id="modal1" class="modal">
           <div class="modal-content">
-            <h4>Meet Your New BFF</h4>
+            <h4>Meet Your Friend!</h4>
             <h5 id="matchName"></h5>
             <img id="matchPic" src="" alt="No Image" width = 250px>
           </div>
@@ -173,90 +173,71 @@
 		$(document).ready(function() {
 			$('#btn').on('click', function(event) {
 			  	event.preventDefault();
-				// $('select').material_select();
-				// 	$('.modal').modal({
-				// 		dismissible: false, // Modal can be dismissed by clicking outside of the modal
-				// 		opacity: .5, // Opacity of modal background
-				// 		inDuration: 300, // Transition in duration
-				// 		outDuration: 200, // Transition out duration
-				// 		startingTop: '4%', // Starting top style attribute
-				// 		endingTop: '10%' // Ending top style attribute
-				// 	});
-				// });
 
-				//form validation
-		        function validateForm() {
-		            var isValid = true;
-		            $('.form-control').each(function() {
-		                if ($(this).val() === ''){
-		                    isValid = false;
-		                }
-		            });
-
-		            $('.browser-defaul').each(function() {
-
-		                if ($(this).val() = ''){
-		                    isValid = false;
-		                }
-		            });
-		            return isValid;
-		        }
+			  	if (typeof jQuery !== 'undefined') {
+   					jQuery.ajaxSettings.traditional = true;
 
 
-		        //if everything is filled
-	        	if (validateForm() == true) {
+					//form validation
+			        function validateForm() {
+			            var isValid = true;
+			            $('.form-control').each(function() {
+			                if ($(this).val() === ''){
+			                    isValid = false;
+			                }
+			            });
 
-					  // Here we grab the form elements
-						var info = {
-							name: $('#name').val().trim(),
-							photo: $('#link').val().trim(),
-							scores:[
-								$('#quest1').val().trim(),
-								$('#quest2').val().trim(),
-								$('#quest3').val().trim(),
-								$('#quest4').val().trim(),
-								$('#quest5').val().trim(),
-								$('#quest6').val().trim(),
-								$('#quest7').val().trim(),
-								$('#quest8').val().trim(),
-								$('#quest9').val().trim(),
-								$('#quest10').val().trim()
-							]
-					};
-				
+			            $('.browser-defaul').each(function() {
 
-				  // console.log('info = ' + JSON.stringify(info));
-		    		//Grabs current URL of website
-		       		var currentURL = window.location.origin;
-		   			
-		   			//AJAX posts the data to friends API.
-		            $.post(currentURL + "/api/friends", info, function(data) {
-		                //Grab the result from the AJAX post so that the best match's name and photo are displayed.
-		                $("#matchName").text(data.name);
-		                $("#matchPic").attr("src", data.photo);
-		            });
-		            
-		            // Show the modal with the best match
-		        		$('.modal').modal();
-		            
-			            // //clear form after submission
-			            // $('#name').val("");
-			            // $('#link').val("");
-			            // $('#q1').val("");
-			            // $('#q2').val("");
-			            // $('#q3').val("");
-			            // $('#q4').val("");
-			            // $('#q5').val("");
-			            // $('#q6').val("");
-			            // $('#q7').val("");
-			            // $('#q8').val("");
-			            // $('#q9').val("");
-			            // $('#q10').val("");
-	    		} else {
-	            	alert("Please fill out ALL fields before submitting survey!")
-	        	}
-	        	// return false;
-	    	});
+			                if ($(this).val() = ''){
+			                    isValid = false;
+			                }
+			            });
+			            return isValid;
+			        }
+
+
+			        //if everything is filled
+		        	if (validateForm() == true) {
+
+						  // Here we grab the form elements
+							var info = {
+								name: $('#name').val().trim(),
+								photo: $('#link').val().trim(),
+								scores:[
+									$('#quest1').val().trim(),
+									$('#quest2').val().trim(),
+									$('#quest3').val().trim(),
+									$('#quest4').val().trim(),
+									$('#quest5').val().trim(),
+									$('#quest6').val().trim(),
+									$('#quest7').val().trim(),
+									$('#quest8').val().trim(),
+									$('#quest9').val().trim(),
+									$('#quest10').val().trim()
+								]
+						};
+					
+
+					  // console.log('info = ' + JSON.stringify(info));
+			    		//Grabs current URL of website
+			       		var currentURL = window.location.origin;
+			   			
+			   			//AJAX posts the data to friends API.
+			            $.post(currentURL + "/api/friends", info, function(data) {
+			                //Grab the result from the AJAX post so that the best match's name and photo are displayed.
+			                $("#matchName").text(data.name);
+			                $("#matchPic").attr("src", data.photo);
+			            });
+			            
+			            // Show the modal with the best match
+			        		$('.modal').modal("");
+			            
+		    		} else {
+		            	alert("Please fill out ALL fields before submitting survey!")
+		        	}
+		        }	// return false;
+		    });
     	});
 	</script>
 </body>

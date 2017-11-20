@@ -1,6 +1,3 @@
-
-
-
 // ===============================================================================
 // LOAD DATA
 // We are linking our routes to a series of "data" sources.
@@ -75,4 +72,3 @@ module.exports = function(app) {
 	    friends.push(req.body);
 	});
 };
-
